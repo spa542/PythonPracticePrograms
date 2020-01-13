@@ -1,0 +1,33 @@
+# OOP
+# Creating Objects
+
+class PlayerCharacter:
+    # Class Object Attribute aka Static variable
+    membership = True
+
+    def __init__(self, name, age):
+        if (self.membership):
+            self.name = name # attributes
+            self.age = age
+
+    def shout(self):
+        print(f'my name is {self.name}')
+
+    def run(self):
+        print('run')
+
+player1 = PlayerCharacter('Cindy', 25)
+player2 = PlayerCharacter('Tom', 31)
+
+print(player1)
+print(player1.name)
+print(player1.age)
+print(player2)
+print(player2.name)
+print(player2.age)
+player1.run()
+player2.run()
+PlayerCharacter.membership = False
+print(player1.membership)
+print(player2.membership)
+
