@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 import csv
 app = Flask(__name__)
 
@@ -25,6 +25,13 @@ def write_to_csv(data):
         csv_writer = csv.writer(database2, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([email,subject,message])
 
+@app.route('/zip-file')
+def return_file():
+    return send_file('./static/assets/DownloadFiles/Project1Rosiak.zip')
+
+@app.route('/zip-file2')
+def return_file2():
+		return send_file('./static/assets/DownloadFiles/Project2Rosiak.zip')
 
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
