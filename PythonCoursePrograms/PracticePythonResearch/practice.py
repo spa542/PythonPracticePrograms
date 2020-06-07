@@ -2,7 +2,7 @@
 # Learning numpy and sklearn
 # Step 1: Install and import sklearn/numpy packages
 import numpy as np
-import sklearn
+import sklearn.datasets
 import math
 
 def main():
@@ -90,7 +90,7 @@ def main():
 
     # Step 16: Create an array of 100 random floats drawn from a standard normal 
     # Gaussian distribution
-    random_array = np.random.rand(100)
+    random_array = np.random.normal(0, 1, (10, 10))
     print(random_array)
 
     # Step 17: Find the empirical mean, median, and standard deviation of an array of 
@@ -107,9 +107,54 @@ def main():
     print('95th percentile is ' + str(np.percentile(random_array, 95)))
 
     # Step 19: Normalize the array so that all values lie in the range [0,1]
-    # In this case the array is already normalized
+    norm_array = (np.subtract(random_array, np.amin(random_array))) / (np.amax(random_array) - np.amin(random_array))
+    print('Array should now be normalized')
+    print(norm_array)
 
     # Step 20: Bouncy Number problem
+    def isBouncy(number):
+        '''
+        Takes a single number and figures out if it is a bouncy number or not
+        '''
+        increasing = False
+        decreasing = False
+
+        last = number % 10
+        number = number / 10
+
+        while number > 0:
+            nextnum = number % 10
+            number = number / 10
+            if nextnum < last:
+                increasing = True
+            elif nextnum > last:
+                decreasing = True
+
+            last = nextnum
+
+            if decreasing and increasing:
+                return True
+
+        return decreasing and increasing
+
+    i = 99
+    bouncies = 0
+    findNum = 0
+    while (100 * bouncies) < (99 * i):
+        i = i + 1
+        findNum = 99 * i
+        if isBouncy(i):
+            bouncies = bouncies + 1
+
+    print(f'Number of bouncies at 99 percent limit: {bouncies}')
+    print(f'Smallest number where the amount of bouncies is 99 percent: {findNum}')
+
+
+    # Step 21: sci-kit learn library problem
+    pw = sklearn.datasets.fetch_openml("PhishingWebsites")
+    targetData = pw.target
+    print(pw.data)
+
 
 if __name__ == '__main__':
     main()
