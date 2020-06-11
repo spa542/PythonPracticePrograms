@@ -86,10 +86,11 @@ def main():
             N = testSize # Amount of instances
 
             # Uncomment one to use a different distribution!!
+            S = np.random.gamma(1, scale=1.0, size=(2,N)) # Matrix consisting of a random gamma distribution from [0,1)
             #S = np.random.laplace(loc=0.0, scale=1.0, size=(2,N)) # Matrix consisting of a laplace random distribution from [0,1)
             #S = np.random.logistic(loc=0.0, scale=1.0, size=(2,N)) # Matrix consisting of a logistic random distribution from [0,1)
             #S = np.random.gumbel(loc=0.0, scale=1.0, size=(2,N)) # Matrix consisting of a gumbel random distribution from [0, 1)
-            S = np.random.uniform(low=-1.0, high=1.0, size=(2,N)) # Matrix consisting of a uniform random distribution from [0, 1)
+            #S = np.random.uniform(low=-1.0, high=1.0, size=(2,N)) # Matrix consisting of a uniform random distribution from [0, 1)
 
             A = normalize_cols(np.random.normal(loc=0.0, scale=1.0, size=(2,2))) # Matrix consisting of a 2 by 2 Matrix, the mixing matrix
 
