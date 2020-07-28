@@ -1,6 +1,6 @@
 import psycopg2
 
-url = "postgres://nkauskyw:t3dy8ngEN6VuXyX-1G2-Okr4dXSYWKOv@ruby.db.elephantsql.com:5432/nkauskyw"
+url = "MUST BE FROM WEBSITE"
 connection = psycopg2.connect(url)
 
 cursor = connection.cursor()
