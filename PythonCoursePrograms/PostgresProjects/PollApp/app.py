@@ -1,4 +1,5 @@
 import os
+from typing import List
 import psycopg2
 from psycopg2.errors import DivisionByZero
 from dotenv import load_dotenv
@@ -46,11 +47,11 @@ def prompt_vote_poll(connection):
     _print_poll_options(poll_options)
 
     option_id = int(input("Enter option you'd like to vote for: "))
-    username input("Enter the username you'd like to vote as: ")
+    username = input("Enter the username you'd like to vote as: ")
     database.add_poll_vote(connection, username, option_id)
 
 
-def _print_poll_options(poll_with_options):
+def _print_poll_options(poll_with_options: List[database.PollWithOptions]):
     for option in poll_with_options:
         print(f"{option[3]}: {option[4]}")
 
@@ -100,7 +101,7 @@ def menu():
             MENU_OPTIONS[selection](connection)
         except KeyError:
             print("Invalid input selected. Please try again.")
-        selection = nput(MENU_PROMPT)
+        selection = input(MENU_PROMPT)
 
 
 if __name__ == '__main__':
