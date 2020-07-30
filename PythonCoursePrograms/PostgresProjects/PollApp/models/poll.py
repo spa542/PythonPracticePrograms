@@ -24,7 +24,7 @@ class Poll:
     def options(self) -> List[Option]:
         with get_connection() as connection:
             options = database.get_poll_options(connection, self.id)
-            return [Option(option[1], option[2], option[3]) for option in options]
+            return [Option(option[1], option[2], option[0]) for option in options]
 
     @classmethod
     def get(cls, poll_id: int) -> "Poll": # Evaluate the return type after the class is finished processing

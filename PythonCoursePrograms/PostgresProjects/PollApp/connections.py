@@ -1,7 +1,7 @@
 import os
 from contextlib import contextmanager
-from pscyopg2.pool import SimpleConnectionPool
-from dotenv import load_dotenv()
+from psycopg2.pool import SimpleConnectionPool
+from dotenv import load_dotenv
 
 DATABASE_PROMPT = "Enter the DATABASE_URL value or leave empty to load from .env file: "
 
