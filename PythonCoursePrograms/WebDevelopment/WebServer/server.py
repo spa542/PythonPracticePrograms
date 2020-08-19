@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, send_file
 import csv
 app = Flask(__name__)
 
+# Basic website transition
+
 @app.route('/')
 def my_home():
     return render_template('index.html');
@@ -9,6 +11,8 @@ def my_home():
 @app.route('/<string:page_name>')
 def html_page(page_name):
     return render_template(page_name)
+
+# Saving information from contact me page
 
 def write_to_file(data):
     with open('database.txt', mode='a') as database:
@@ -25,14 +29,6 @@ def write_to_csv(data):
         csv_writer = csv.writer(database2, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([email,subject,message])
 
-@app.route('/zip-file')
-def return_file():
-    return send_file('./static/assets/DownloadFiles/Project1Rosiak.zip')
-
-@app.route('/zip-file2')
-def return_file2():
-		return send_file('./static/assets/DownloadFiles/Project2Rosiak.zip')
-
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
@@ -45,3 +41,22 @@ def submit_form():
             return 'Did not save to database, something went wrong, try again'
     else:
         return 'something went wrong. Try again!'
+
+# Sending Zip Files
+
+@app.route('/zip-file')
+def return_file():
+    return send_file('./static/assets/DownloadFiles/Project1Rosiak.zip')
+
+@app.route('/zip-file2')
+def return_file2():
+    return send_file('./static/assets/DownloadFiles/Project2Rosiak.zip')
+
+@app.route('/zip-file3')
+def return_file3():
+    return send_file('./static/assets/DownloadFiles/PasswordChecker.zip')
+
+@app.route('/zip-file4')
+def return_file4():
+    return send_file('./static/assets/DownloadFiles/PollApp.zip')
+
