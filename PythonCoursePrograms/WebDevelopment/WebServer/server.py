@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, redirect, send_file
 import os
 import csv
-from dotenv import load_dotenv
-from psycopg2.pool import SimpleConnectionPool
-import Query
+#from dotenv import load_dotenv
+#from psycopg2.pool import SimpleConnectionPool
+#import Query
 app = Flask(__name__)
-load_dotenv() # Load the .env file
-database_url = os.environ["DATABASE_URL"] # Set the environment variable
+#load_dotenv() # Load the .env file
+#database_url = os.environ["DATABASE_URL"] # Set the environment variable
 
-pool = SimpleConnectionPool(minconn=1, maxconn=15, dsn=database_url) # Create the connection pool
+#pool = SimpleConnectionPool(minconn=1, maxconn=15, dsn=database_url) # Create the connection pool
 
 # Basic website transition
 
@@ -48,8 +48,8 @@ def submit_form():
         try:
             data = request.form.to_dict()
             print(data)
-            #write_to_csv(data)
-            write_to_online_database(data)
+            write_to_csv(data)
+            #write_to_online_database(data)
             return redirect('/thankyou.html')
         except Exception as e:
             print(e)
