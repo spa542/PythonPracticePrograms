@@ -1,6 +1,14 @@
 from flask import Flask, render_template, request, redirect, send_file
+import os
 import csv
+from dotenv import load_dotenv
+from psycopg2.pool import SimpleConnectionPool
+import Query
 app = Flask(__name__)
+load_dotenv() # Load the .env file
+database_url = os.environ["DATABASE_URL"] # Set the environment variable
+
+pool = SimpleConnectionPool(minconn=1, maxconn=15, dsn=database_url) # Create the connection pool
 
 # Basic website transition
 
@@ -29,15 +37,22 @@ def write_to_csv(data):
         csv_writer = csv.writer(database2, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([email,subject,message])
 
+def write_to_online_database(data):
+    query = Query.Query(data["email"], data["subject"], data["message"])
+    query.create_tables()
+    query.insert_contact_info()
+
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
         try:
             data = request.form.to_dict()
             print(data)
-            write_to_csv(data)
+            #write_to_csv(data)
+            write_to_online_database(data)
             return redirect('/thankyou.html')
-        except:
+        except Exception as e:
+            print(e)
             return 'Did not save to database, something went wrong, try again'
     else:
         return 'something went wrong. Try again!'
