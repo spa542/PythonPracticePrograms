@@ -59,19 +59,22 @@ def submit_form():
 
 # Sending Zip Files
 
+# Leiontif's Econ I/O Model
 @app.route('/zip-file')
 def return_file():
     return send_file('./static/assets/DownloadFiles/Project1Rosiak.zip')
 
+# Spell Checker
 @app.route('/zip-file2')
 def return_file2():
     return send_file('./static/assets/DownloadFiles/Project2Rosiak.zip')
 
+# Poll App
 @app.route('/zip-file3')
 def return_file3():
-    return send_file('./static/assets/DownloadFiles/PasswordChecker.zip')
-
-@app.route('/zip-file4')
-def return_file4():
     return send_file('./static/assets/DownloadFiles/PollApp.zip')
 
+# Deprecated, needs to be updated and fixed!!!!!
+@app.route('/zip-file4')
+def return_file4():
+    return send_file('./static/assets/DownloadFiles/PasswordChecker.zip')
