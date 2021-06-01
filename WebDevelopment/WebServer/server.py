@@ -74,7 +74,7 @@ def return_file2():
 def return_file3():
     return send_file('./static/assets/DownloadFiles/PollApp.zip')
 
-# Deprecated, needs to be updated and fixed!!!!!
+# Password Checker
 @app.route('/zip-file4')
 def return_file4():
     return send_file('./static/assets/DownloadFiles/PasswordChecker.zip')
